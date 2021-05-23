@@ -1,0 +1,191 @@
+title: CasaPaco
+views:
+  - path: default_view
+    title: Home
+    icon: 'mdi:home'
+    badges:
+      - entity: sensor.anniversary_concho
+      - entity: sensor.anniversary_huvalde
+      - entity: sensor.anniversary_minion
+      - entity: sensor.anniversary_historiador_de_deloitte
+      - entity: sensor.anniversary_biceps_humano
+    cards:
+      - type: grid
+        cards:
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.led
+                show_state: false
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: fan.fan
+            square: false
+            columns: 2
+          - type: grid
+            cards:
+              - type: thermostat
+                entity: climate.termostato
+            square: false
+            columns: 1
+          - type: sensor
+            entity: sensor.temperatura_salon
+            graph: line
+        columns: 1
+        square: false
+  - icon: 'mdi:rocket'
+    title: Spacex
+    path: spacex
+    badges: []
+    cards:
+      - type: grid
+        cards:
+          - type: entities
+            entities:
+              - sensor.latest_launch_day
+              - sensor.latest_launch_mission
+              - sensor.latest_launch_payload
+              - sensor.latest_launch_rocket
+              - sensor.latest_launch_site
+              - sensor.latest_launch_time
+              - binary_sensor.launch_within_20_minutes
+              - binary_sensor.launch_within_24_hours
+              - sensor.next_confirmed_launch_day
+              - sensor.next_confirmed_launch_time
+              - binary_sensor.next_launch_confirmed
+              - sensor.next_launch_countdown
+              - sensor.next_launch_day
+              - sensor.next_launch_mission
+              - sensor.next_launch_payload
+              - sensor.next_launch_rocket
+              - sensor.next_launch_site
+              - sensor.next_launch_time
+        square: false
+        columns: 1
+      - type: grid
+        cards:
+          - type: entities
+            entities:
+              - sensor.starman_distance
+              - sensor.starman_speed
+        square: false
+        columns: 1
+  - icon: 'mdi:bitcoin'
+    badges: []
+    cards:
+      - type: grid
+        cards:
+          - type: grid
+            cards:
+              - type: entity
+                entity: sensor.cryptoinfo_main_wallet_dogecoin_eur
+                unit: €
+                name: Dogecoin
+              - type: entity
+                entity: sensor.cryptoinfo_main_wallet_dogecoin_eur_24h_change
+                name: Cambio en 24 horas
+                unit: Centimos €
+            square: false
+            columns: 2
+        square: false
+        columns: 1
+  - title: CUMpleaños
+    icon: 'mdi:cake'
+    badges:
+      - entity: sensor.anniversary_huvalde
+      - entity: sensor.anniversary_biceps_humano
+      - entity: sensor.anniversary_minion
+      - entity: sensor.anniversary_concho
+      - entity: sensor.anniversary_historiador_de_deloitte
+    cards: []
+  - title: Cocina
+    path: cocina
+    badges: []
+    cards:
+      - type: grid
+        cards:
+          - type: grid
+            cards:
+              - type: entities
+                entities:
+                  - switch.relay_1
+                  - switch.relay_2
+                  - switch.relay_3
+                  - switch.relay_4
+                  - switch.relay_5
+                  - switch.relay_6
+                  - switch.relay_7
+                  - switch.relay_8
+            columns: 1
+            square: false
+          - shorten_cards: false
+            consolidate_entities: false
+            color_wheel: true
+            persist_features: false
+            brightness: true
+            color_temp: true
+            white_value: true
+            color_picker: true
+            smooth_color_wheel: false
+            hide_header: false
+            child_card: false
+            show_slider_percent: false
+            full_width_sliders: false
+            brightness_icon: weather-sunny
+            white_icon: file-word-box
+            temperature_icon: thermometer
+            type: 'custom:light-entity-card'
+            entity: light.lampara_ambiental
+            effect_list:
+              - Pride Waves
+              - Pride Rings
+              - Vertical Waves
+              - Color Rings
+              - Vertical Rainbow
+              - Pride
+              - Color Waves
+              - Horizontal Rainbow
+              - Solid Rainbow
+              - Confetti
+              - Sinelon
+              - Beat
+              - Juggle
+              - Fire
+              - Water
+              - Strobe
+              - Rainbow Strobe
+              - Smooth Rainbow Strobe
+              - Rainbow Roll
+              - Rainbow Beat
+              - Palette Fades
+              - Rainbow Chase
+              - Rainbow Dots
+              - Rainbow Fades
+              - Police Lights
+              - Glitter
+              - Snow Flakes
+              - Lightning
+              - Palette Twinkles
+              - Snow Twinkles
+              - Incandescent Twinkles
+              - Retro C9 Twinkles
+              - Red & White Twinkles
+              - Blue & White Twinkles
+              - 'Red, Green & White Twinkles'
+              - Fairy Light Twinkles
+              - Snow 2 Twinkles
+              - Holly Twinkles
+              - Ice Twinkles
+              - Party Twinkles
+              - Forest Twinkles
+              - Lava Twinkles
+              - Fire Twinkles
+              - Cloud 2 Twinkles
+              - Ocean Twinkles
+              - Solid Color
+            header: Lampara_ambiental
+        columns: 1
+        square: false

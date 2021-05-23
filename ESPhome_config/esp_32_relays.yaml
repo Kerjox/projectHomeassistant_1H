@@ -1,0 +1,67 @@
+esphome:
+  name: esp_32_relays
+  platform: ESP32
+  board: esp32dev
+
+wifi:
+  ssid: "ALCACHOFA"
+  password: "IVSZ2e12"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp 32 Relays Fallback Hotspot"
+    password: "SIPxR6ykuF5h"
+
+#captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "iot"
+
+ota:
+  password: "iot"
+  
+switch:
+  - platform: gpio
+    name: "Relay 1"
+    pin: 18
+    inverted: yes
+    
+  - platform: gpio
+    name: "Relay 2"
+    pin: 19
+    inverted: yes
+    
+  - platform: gpio
+    name: "Relay 3"
+    pin: 32
+    inverted: yes
+    
+  - platform: gpio
+    name: "Relay 4"
+    pin: 33
+    inverted: yes
+    
+  - platform: gpio
+    name: "Relay 5"
+    pin: 25
+    inverted: yes
+    
+  - platform: gpio
+    name: "Relay 6"
+    pin: 26
+    inverted: yes
+    
+  - platform: gpio
+    name: "Relay 7"
+    pin: 27
+    inverted: yes
+    
+  - platform: gpio
+    name: "Relay 8"
+    pin: 14
+    inverted: yes
+    

@@ -1,0 +1,54 @@
+esphome:
+  name: esp_8266_2
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: "ALCACHOFA"
+  password: "IVSZ2e12"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp 8266 2 Fallback Hotspot"
+    password: "1kJpgmZrecrj"
+
+#captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "iot"
+
+ota:
+  password: "iot"
+  
+light:
+  - platform: cwww
+    name: "Tira LED"
+    cold_white: pwm_cold
+    warm_white: pwm_warm
+    cold_white_color_temperature: 6000 K
+    warm_white_color_temperature: 3000 K
+    constant_brightness: true
+  
+sensor:
+  - platform: dht
+    pin: D1
+    temperature:
+      name: "Temperatura Salon"
+    humidity:
+      name: "Humedad Salon"
+    update_interval: 60s
+
+output:
+  - platform: esp8266_pwm
+    pin: D2
+    frequency: 1000 Hz
+    id: pwm_warm
+  
+  - platform: esp8266_pwm
+    pin: D3
+    frequency: 1000 Hz
+    id: pwm_cold

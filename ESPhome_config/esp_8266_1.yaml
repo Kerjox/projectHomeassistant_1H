@@ -1,0 +1,86 @@
+esphome:
+  name: esp_8266_1
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: "ALCACHOFA"
+  password: "IVSZ2e12"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp82661 Fallback Hotspot"
+    password: "33ZKSnPZr885"
+
+#captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+
+rtttl:
+  output: rtttl_out
+  on_finished_playback:
+    - logger.log: 'Song ended!'
+
+api:
+  password: "iot"
+  services:
+    - service: play_rtttl
+      variables:
+        song_str: string
+      then:
+        - rtttl.play:
+            rtttl: !lambda 'return song_str;'
+
+ota:
+  password: "iot"
+  
+fan:
+  - platform: speed
+    output: fan_1_out
+    name: "Fan"
+    id: fan_1 
+
+
+light:
+  - platform: binary
+    name: "LED"
+    output: gpio_d2
+    on_turn_on:
+      then:
+          - rtttl.play:
+              rtttl: "mario:d=4,o=5,b=100:16e6,16e6,32p,8e6,16c6,8e6,8g6,8p,8g,8p,8c6,16p,8g,16p,8e,16p,8a,8b,16a#,8a,16g.,16e6,16g6,8a6,16f6,8g6,8e6,16c6,16d6,8b,16p,8c6,16p,8g,16p,8e,16p,8a,8b,16a#,8a,16g.,16e6,16g6,8a6,16f6,8g6,8e6,16c6,16d6,8b,8p,16g6,16f#6,16f6,16d#6,16p,16e6,16p,16g#,16a,16c6,16p,16a,16c6,16d6,8p,16g6,16f#6,16f6,16d#6,16p,16e6,16p,16c7,16p,16c7,16c7,p,16g6,16f#6,16f6,16d#6,16p,16e6,16p,16g#,16a,16c6,16p,16a,16c6,16d6,8p,16d#6,8p,16d6,8p,16c6"
+              
+climate:
+  - platform: thermostat
+    name: "Termostato"
+    sensor: temp
+    default_target_temperature_high: 22 °C
+    cool_action:
+      - fan.turn_on: 
+          id: fan_1
+          speed: 90
+    idle_action:
+      - fan.turn_off: fan_1
+      
+sensor:
+  - platform: homeassistant
+    name: "Temperature Sensor"
+    entity_id: sensor.temperatura_salon
+    id: temp
+    
+output:
+  - platform: gpio
+    pin: D2
+    id: gpio_d2
+    
+  - platform: esp8266_pwm
+    pin: D3
+    frequency: 100 Hz
+    id: fan_1_out
+    
+  - platform: esp8266_pwm
+    pin: D1
+    id: rtttl_out
